@@ -32,14 +32,14 @@
 								
 								<!--- Blog Post Image --->
 								<cfif prc.entry.getFeaturedImageURL() NEQ "">
-									<div class="blog-thumb"><a href="#cb.linkEntry(prc.entry)#"><img class="img-fluid" src="#prc.entry.getFeaturedImageURL()#" alt="#prc.entry.getTitle()#"></a></div>
+									<div class="blog-thumb"><img class="img-fluid" src="#prc.entry.getFeaturedImageURL()#" alt="#prc.entry.getTitle()#"></div>
 								</cfif>
 
 								<!--- Blog Post Detail --->
 								<div class="down-content">
 									<span>#cb.quickCategoryLinks(prc.entry)#</span>
 									<!--- Blog Post Title --->
-									<a href="#cb.linkEntry(prc.entry)#"><h4>#prc.entry.getTitle()#</h4></a>
+									<h4>#prc.entry.getTitle()#</h4>
 								
 									<ul class="post-info">
 										<li><a href="javascript:void(0)">#prc.entry.getAuthorName()#</a></li>

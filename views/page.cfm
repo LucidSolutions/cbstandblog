@@ -11,8 +11,8 @@
         <div class="col-md-12">
           <div class="text-content">
             <h4>#prc.page.getTitle()#</h4>
-            <cfif prc.page.getExcerpt() NEQ "">
-            	<h2>#prc.page.getExcerpt()#</h2>
+            <cfif prc.page.hasExcerpt()>
+            	<h2>#prc.page.renderExcerpt()#</h2>
             </cfif>
           </div>
         </div>

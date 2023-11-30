@@ -13,7 +13,8 @@
 			</div>
 			<div class="col-lg-12">
 				<div class="copyright-text">
-					<p>Copyright #YEAR(NOW())# #cb.siteName()# Co.</p>
+					<p class="">Theme Developed By <a href="https://lucidoutsourcing.com/">Lucid Outsourcing Solutions Pvt. Ltd.</a></p>
+                	<div>#cb.themeSetting( 'footerBox' )#</div>
 				</div>
 			</div>
 		</div>

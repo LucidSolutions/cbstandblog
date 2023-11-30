@@ -44,16 +44,29 @@ component extends="contentbox.models.ui.BaseWidget" singleton{
 		var cbSettings 		= event.getValue( name="cbSettings", private=true );
 		
 		// Determine Sort Order
-		switch( arguments.sortOrder ){
-			case "Most Popular" 	: { arguments.sortOrder = "hits DESC";break; }
-			case "Most Commented" 	: { arguments.sortOrder = "numberOfComments DESC";break;}
-			default : { arguments.sortOrder = "publishedDate DESC"; }
+		// Determine Sort Order
+		switch ( arguments.sortOrder ) {
+			case "Most Popular": {
+				arguments.sortOrder = "hits DESC";
+				break;
+			}
+			case "Most Commented": {
+				arguments.sortOrder = "numberOfComments DESC";
+				break;
+			}
+			default: {
+				arguments.sortOrder = "publishedDate DESC";
+			}
 		}
 
-		var entryResults 	= entryService.findPublishedEntries( max=arguments.max,
-											   					 category=arguments.category,
-											   				 	 searchTerm=arguments.searchTerm,
-											   				 	 sortOrder=arguments.sortOrder );
+		var entryResults = variables.entryService.findPublishedContent(
+			max       : arguments.max,
+			category  : arguments.category,
+			searchTerm: arguments.searchTerm,
+			sortOrder : arguments.sortOrder,
+			siteID    : getSite().getsiteID()
+		);
+
 		var rString			= "";
 
 		// iteration cap
@@ -69,9 +82,9 @@ component extends="contentbox.models.ui.BaseWidget" singleton{
 			writeOutput('<ul id="recentEntries">');
 			// iterate and create
 			for(var x=1; x lte arguments.max; x++){
-				writeOutput('<li class="recentEntries"><a href="#cb.linkEntry(entryResults.entries[ x ])#">');
-				writeOutput('<h5>#entryResults.entries[ x ].getTitle()#</h5>');
-				writeOutput('<span>#dateFormat(entryResults.entries[ x ].getDisplayPublishedDate(),'mmm dd, yyyy' )#</span>');
+				writeOutput('<li class="recentEntries"><a href="#cb.linkEntry(entryResults.content[ x ])#">');
+				writeOutput('<h5>#entryResults.content[ x ].getTitle()#</h5>');
+				writeOutput('<span>#dateFormat(entryResults.content[ x ].getDisplayPublishedDate(),'mmm dd, yyyy' )#</span>');
 				writeOutput('</a></li>');
 			}
 			// close ul
@@ -85,7 +98,7 @@ component extends="contentbox.models.ui.BaseWidget" singleton{
 	* Get all the categories
 	*/
 	array function getAllCategories() cbIgnore{
-		return categoryService.getAllNames();
+		return variables.categoryService.getAllNames();
 	}
 
 }

@@ -36,6 +36,12 @@
 <!--- 					CSS 															--->
 <!--- ********************************************************************************* --->
 
+<cfif len( cb.themeSetting( 'cssStyleOverrides' ) )>
+	<style>
+		#cb.themeSetting( 'cssStyleOverrides' )#
+	</style>	
+</cfif>
+
 <!-- injector:css -->
 <link rel="stylesheet" href="#cb.themeRoot()#/includes/css/eb5805a7.theme.min.css">
 <!-- endinjector -->
